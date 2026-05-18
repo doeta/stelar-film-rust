@@ -9,6 +9,7 @@ pub struct Movie {
     pub title: String,
     pub release_year: u32,
     pub description: String,
+    pub poster_url: String,
 }
 
 #[contracttype]
@@ -43,7 +44,7 @@ impl MovieContract {
     }
 
     // CREATE: Menambahkan film baru
-    pub fn create_movie(env: Env, title: String, release_year: u32, description: String) -> u64 {
+    pub fn create_movie(env: Env, title: String, release_year: u32, description: String, poster_url: String) -> u64 {
         let id = Self::get_next_movie_id(&env);
         
         let movie = Movie {
@@ -51,6 +52,7 @@ impl MovieContract {
             title,
             release_year,
             description,
+            poster_url,
         };
 
         // Menyimpan data film ke storage persisten

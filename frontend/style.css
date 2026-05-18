@@ -142,6 +142,25 @@ button {
   border: 1px solid var(--border);
 }
 
+.movie-header {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.movie-poster {
+  width: 120px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background-color: var(--bg-main);
+}
+
+.movie-info {
+  flex: 1;
+}
+
 .meta {
   font-size: 0.9rem;
   color: var(--text-muted);

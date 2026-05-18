@@ -15,10 +15,11 @@ fn test_movie_crud() {
     // 3. Test Create Movie
     let title = String::from_str(&env, "Inception");
     let description = String::from_str(&env, "Mimpi di dalam mimpi");
+    let poster_url = String::from_str(&env, "https://example.com/inception.jpg");
     let release_year = 2010;
 
     // Memanggil fungsi dari lib.rs
-    let movie_id = client.create_movie(&title, &release_year, &description);
+    let movie_id = client.create_movie(&title, &release_year, &description, &poster_url);
     
     // Memastikan ID pertama yang terbuat adalah 1
     assert_eq!(movie_id, 1);
@@ -30,4 +31,5 @@ fn test_movie_crud() {
     assert_eq!(movie.title, title);
     assert_eq!(movie.release_year, 2010);
     assert_eq!(movie.description, description);
+    assert_eq!(movie.poster_url, poster_url);
 }

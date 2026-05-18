@@ -51,6 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const title = document.getElementById("movieTitle").value;
     const year = parseInt(document.getElementById("movieYear").value);
     const description = document.getElementById("movieDesc").value;
+    const poster = document.getElementById("moviePoster").value;
 
     try {
       // Simulating blockchain transaction delay
@@ -66,6 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
           title,
           release_year: year,
           description,
+          poster_url: poster,
         };
         mockComments[newId] = [];
 
@@ -98,6 +100,16 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("displayTitle").textContent = movie.title;
         document.getElementById("displayYear").textContent = movie.release_year;
         document.getElementById("displayId").textContent = movie.id;
+
+        const posterImg = document.getElementById("displayPoster");
+        if (movie.poster_url) {
+          posterImg.src = movie.poster_url;
+          posterImg.classList.remove("hidden");
+        } else {
+          posterImg.src = "";
+          posterImg.classList.add("hidden");
+        }
+
         document.getElementById("displayDesc").textContent = movie.description;
         document.getElementById("commentMovieId").value = movie.id;
 
