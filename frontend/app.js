@@ -51,12 +51,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const title = document.getElementById("movieTitle").value;
     const year = parseInt(document.getElementById("movieYear").value);
     const description = document.getElementById("movieDesc").value;
-    const poster = document.getElementById("moviePoster").value;
+    const posterInput = document.getElementById("moviePoster");
 
     try {
       // Simulating blockchain transaction delay
       addMovieResult.textContent = "Transaction in progress...";
       addMovieResult.className = "result-msg";
+
+      // Read file and convert to Base64
+      let posterDataUrl = "";
+      if (posterInput.files && posterInput.files[0]) {
+        const file = posterInput.files[0];
+        const reader = new FileReader();
+        posterDataUrl = await new Promise((resolve) => {
+          reader.onload = (e) => resolve(e.target.result);
+          reader.readAsDataURL(file);
+        });
+      }
 
       setTimeout(() => {
         // Mock Backend Execution
@@ -67,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
           title,
           release_year: year,
           description,
-          poster_url: poster,
+          poster_url: posterDataUrl,
         };
         mockComments[newId] = [];
 
