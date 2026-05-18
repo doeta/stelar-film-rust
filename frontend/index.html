@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stellar Movie DApp</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">🎬 Stellar Movie DApp</div>
+      <div class="wallet-info">
+        <button id="connectBtn">Connect Wallet</button>
+        <span id="walletAddress" class="hidden"></span>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Add Movie Section -->
+      <section class="card">
+        <h2>Add New Movie</h2>
+        <form id="addMovieForm">
+          <div class="form-group">
+            <label for="movieTitle">Movie Title</label>
+            <input
+              type="text"
+              id="movieTitle"
+              required
+              placeholder="e.g., Inception"
+            />
+          </div>
+          <div class="form-group">
+            <label for="movieYear">Release Year</label>
+            <input
+              type="number"
+              id="movieYear"
+              required
+              placeholder="e.g., 2010"
+              min="1800"
+              max="2100"
+            />
+          </div>
+          <div class="form-group">
+            <label for="movieDesc">Description</label>
+            <textarea
+              id="movieDesc"
+              rows="3"
+              required
+              placeholder="Enter description..."
+            ></textarea>
+          </div>
+          <button type="submit" class="btn-primary">Create Movie</button>
+          <div id="addMovieResult" class="result-msg"></div>
+        </form>
+      </section>
+
+      <!-- Search & Interact Section -->
+      <section class="card">
+        <h2>Find & Review Movie</h2>
+        <div class="search-box">
+          <input
+            type="number"
+            id="searchId"
+            placeholder="Enter Movie ID"
+            min="1"
+          />
+          <button id="searchBtn" class="btn-secondary">Search</button>
+        </div>
+
+        <div id="movieDetails" class="hidden movie-details-box">
+          <h3 id="displayTitle"></h3>
+          <p class="meta">
+            <strong>Released:</strong> <span id="displayYear"></span> |
+            <strong>ID:</strong> <span id="displayId"></span>
+          </p>
+          <p id="displayDesc" class="desc"></p>
+
+          <hr />
+
+          <!-- Comments Section -->
+          <h4>Reviews & Comments</h4>
+          <ul id="commentsList" class="comments-list"></ul>
+
+          <form id="addCommentForm" class="comment-form">
+            <input type="hidden" id="commentMovieId" />
+            <div class="form-group">
+              <textarea
+                id="commentContent"
+                rows="2"
+                placeholder="Write your review here..."
+                required
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label for="commentRating">Rating (1-5)</label>
+              <input
+                type="number"
+                id="commentRating"
+                min="1"
+                max="5"
+                required
+              />
+            </div>
+            <button type="submit" class="btn-primary btn-small">
+              Submit Review
+            </button>
+            <div id="commentResult" class="result-msg"></div>
+          </form>
+        </div>
+        <div id="searchResult" class="result-msg"></div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
